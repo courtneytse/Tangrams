@@ -2,8 +2,8 @@ public class GridSquare {
 
 	private boolean allFull, botRight, botLeft, topRight, topLeft;
 	
-	GridSquare() {
-		allFull = false;
+	GridSquare(boolean filled) {
+		allFull = filled;
 		botRight = false;
 		botLeft = false;
 		topRight = false;
