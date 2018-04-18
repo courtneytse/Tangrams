@@ -12,7 +12,7 @@ public class RightTriangle extends Shape {
 				if (direction == TOP_RIGHT) {
 					if (i == j) {
 						newArray[i][j] = new GridSquare(false, false, true, false);
-					} else if (i < j) {
+					} else if (i > j) {
 						newArray[i][j] = new GridSquare(true);
 					} else {
 						newArray[i][j] = new GridSquare(false);
@@ -20,7 +20,7 @@ public class RightTriangle extends Shape {
 				} if (direction == BOT_LEFT) {
 					if (i == j) {
 						newArray[i][j] = new GridSquare(false, true, false, false);
-					} else if (i > j) {
+					} else if (i < j) {
 						newArray[i][j] = new GridSquare(true);
 					} else {
 						newArray[i][j] = new GridSquare(false);
@@ -28,7 +28,7 @@ public class RightTriangle extends Shape {
 				} if (direction == BOT_RIGHT) {
 					 if (i + 1 == size - j) {
 						 newArray[i][j] = new GridSquare(true, false, false, false);
-					 } else if (i + 1 > size - j) {
+					 } else if (i + 1 < size - j) {
 						 newArray[i][j] = new GridSquare(true);
 					 } else {
 						 newArray[i][j] = new GridSquare(false);
@@ -36,7 +36,7 @@ public class RightTriangle extends Shape {
 				} if (direction == TOP_LEFT) {
 					if (i + 1 == size - j) {
 						newArray[i][j] = new GridSquare(false, false, false, true);
-					} else if (i + 1 < size - j) {
+					} else if (i + 1 > size - j) {
 						newArray[i][j] = new GridSquare(true);
 					} else {
 						newArray[i][j] = new GridSquare(false);
@@ -45,5 +45,9 @@ public class RightTriangle extends Shape {
 			}
 		}
 		setGridComposition(newArray);
+	}
+	
+	public static void main(String[] args) {
+		RightTriangle test = new RightTriangle(RightTriangle.TOP_LEFT, 4);
 	}
 }
