@@ -12,6 +12,8 @@ public abstract class Shape {
 	
 	public void setGridComposition(GridSquare[][] newGrid) {
 		gridComposition = newGrid;
+		width = newGrid.length;
+		height = newGrid[0].length;
 	}
 	
 	public GridSquare[][] getGridComposition() {
