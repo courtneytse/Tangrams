@@ -1,7 +1,7 @@
 
 public class RightTriangle extends Shape {
 
-	public final int TOP_RIGHT = 0, BOT_RIGHT = 1, BOT_LEFT = 2, TOP_LEFT = 3;
+	public static final int TOP_RIGHT = 0, BOT_RIGHT = 1, BOT_LEFT = 2, TOP_LEFT = 3;
 	
 	
 	RightTriangle(int direction, int size) {
@@ -26,17 +26,17 @@ public class RightTriangle extends Shape {
 						newArray[i][j] = new GridSquare(false);
 					}
 				} if (direction == BOT_RIGHT) {
-					 if (i == size - j) {
+					 if (i + 1 == size - j) {
 						 newArray[i][j] = new GridSquare(true, false, false, false);
-					 } else if (i > size - j) {
+					 } else if (i + 1 < size - j) {
 						 newArray[i][j] = new GridSquare(true);
 					 } else {
 						 newArray[i][j] = new GridSquare(false);
 					 }
 				} if (direction == TOP_LEFT) {
-					if (i == size - j) {
+					if (i + 1 == size - j) {
 						newArray[i][j] = new GridSquare(false, false, false, true);
-					} else if (i < size - j) {
+					} else if (i + 1 > size - j) {
 						newArray[i][j] = new GridSquare(true);
 					} else {
 						newArray[i][j] = new GridSquare(false);
@@ -45,5 +45,9 @@ public class RightTriangle extends Shape {
 			}
 		}
 		setGridComposition(newArray);
+	}
+	
+	public static void main(String[] args) {
+		RightTriangle test = new RightTriangle(RightTriangle.TOP_LEFT, 4);
 	}
 }
