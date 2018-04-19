@@ -38,6 +38,21 @@ public class GridSquare {
 		return topLeft;
 	}
 	
+	public void merge(GridSquare sq) throws Exception {
+		if (sq.getTopRight()) {
+			setTopRight(sq.getTopRight());
+		}
+		if (sq.getTopLeft()) {
+			setTopLeft(sq.getTopLeft());
+		}
+		if (sq.getBotLeft()) {
+			setBotLeft(sq.getBotLeft());
+		}
+		if (sq.getBotRight()) {
+			setBotRight(sq.getBotRight());
+		}
+	}
+	
 	public void setBotRight(boolean input) throws Exception {
 		if (input && (botRight || botLeft || topRight || allFull)) {
 			throw new Exception();
