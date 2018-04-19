@@ -1,6 +1,7 @@
+import java.util.ArrayList;
 
 public interface Solution {
 	
-	public int[][] solveTangrams();
+	public ArrayList<Shape> solveTangram(Tangram tangram);
 
 }
