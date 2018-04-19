@@ -28,7 +28,7 @@ public class RightTriangle extends Shape {
 				} if (direction == BOT_RIGHT) {
 					 if (i + 1 == size - j) {
 						 newArray[i][j] = new GridSquare(true, false, false, false);
-					 } else if (i + 1 < size - j) {
+					 } else if (i + 1 > size - j) {
 						 newArray[i][j] = new GridSquare(true);
 					 } else {
 						 newArray[i][j] = new GridSquare(false);
@@ -36,7 +36,7 @@ public class RightTriangle extends Shape {
 				} if (direction == TOP_LEFT) {
 					if (i + 1 == size - j) {
 						newArray[i][j] = new GridSquare(false, false, false, true);
-					} else if (i + 1 > size - j) {
+					} else if (i + 1 < size - j) {
 						newArray[i][j] = new GridSquare(true);
 					} else {
 						newArray[i][j] = new GridSquare(false);
@@ -48,6 +48,17 @@ public class RightTriangle extends Shape {
 	}
 	
 	public static void main(String[] args) {
-		RightTriangle test = new RightTriangle(RightTriangle.TOP_LEFT, 4);
+		RightTriangle test = new RightTriangle(RightTriangle.TOP_RIGHT, 4);
+		for (int y = 0; y < 4; y++) {
+			for (int x = 0; x < 4; x++) {
+				if (test.getGridComposition()[x][y].getAllFull()) {
+					System.out.print(" 1  ");
+				} else if (test.getGridComposition()[x][y].getTopRight()) {
+					System.out.print("0.5 ");
+				} else {
+					System.out.print(" 0  ");
+				}
+			}System.out.println();
+		}
 	}
 }
