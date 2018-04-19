@@ -2,19 +2,27 @@ import java.util.ArrayList;
 public class Tangrams {
 
 	ArrayList<Shape> shapes;
-	Shape puzzle, filledPuzzle;
+	Shape emptyPuzzle, puzzle;
 	
 	Tangrams(Shape main) {
-		puzzle = main;
+		emptyPuzzle = main;
+	}
+	
+	public Shape getPuzzle() {
+		return puzzle;
+	}
+	
+	public Shape getEmptyPuzzle() {
+		return emptyPuzzle;
 	}
 	
 	public boolean legalToPlace(int x, int y, Shape s) {
 		boolean output = true;
-		filledPuzzle = new Shape(puzzle);
+		puzzle = new Shape(emptyPuzzle);
 		for (Shape shape : shapes) {
 			if (shape.getX() != -1 && shape.getY() != -1) {
 				try {
-					addShape(filledPuzzle, shape);
+					addShape(puzzle, shape);
 				} catch (Exception e) {
 					System.out.println("Illegal shape placement");
 				}
@@ -22,7 +30,7 @@ public class Tangrams {
 		}
 		try {
 			Shape child = new Shape(s);
-			addShape(filledPuzzle, child);
+			addShape(puzzle, child);
 		} catch (Exception e) {
 			output = false;
 		}
