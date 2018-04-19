@@ -74,12 +74,12 @@ public class HalfDiamond extends Shape{
 	}
 	
 	public static void main(String[] args) {
-		HalfDiamond test = new HalfDiamond(HalfDiamond.UP, 8);
-		for (int i = 0; i < test.getHeight(); i++) {
-			for (int j = 0; j < test.getWidth(); j++) {
-				if (test.getGridComposition()[j][i].getAllFull()) {
+		HalfDiamond test = new HalfDiamond(HalfDiamond.LEFT, 8);
+		for (int y = 0; y < test.getHeight(); y++) {
+			for (int x = 0; x < test.getWidth(); x++) {
+				if (test.getGridComposition()[x][y].getAllFull()) {
 					System.out.print(" 1  ");
-				} else if (test.getGridComposition()[j][i].getBotLeft() || test.getGridComposition()[j][i].getBotRight() || test.getGridComposition()[j][i].getTopLeft() || test.getGridComposition()[j][i].getTopRight()) {
+				} else if (test.getGridComposition()[x][y].getBotLeft() || test.getGridComposition()[x][y].getBotRight() || test.getGridComposition()[x][y].getTopLeft() || test.getGridComposition()[x][y].getTopRight()) {
 					System.out.print("0.5 ");
 				} else {
 					System.out.print(" 0  ");
