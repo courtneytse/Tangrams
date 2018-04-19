@@ -20,10 +20,11 @@ public class Tangrams {
 				}
 			}
 		}
-		for (int i = 0; i < s.getHeight(); i++) {
-			for (int j = 0; j < s.getWidth(); j++) {
-				
-			}
+		try {
+			Shape child = new Shape(s);
+			addShape(filledPuzzle, child);
+		} catch (Exception e) {
+			output = false;
 		}
 		return output;
 	}
