@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SolutionEvaluator {
 	
-	public double evaluateSolution(Solution soln, ArrayList<Tangram> tangrams) {
+	public double evaluateSolution(Solution soln, ArrayList<Tangrams> tangrams) {
 		double numSolved = 0;
 		for(int i=0; i<tangrams.size(); i++) {
 			ArrayList<Shape> solnShapes = soln.solveTangram(tangrams.get(i));
@@ -30,8 +30,8 @@ public class SolutionEvaluator {
 		return match;
 	}
 	
-	public static ArrayList<Tangram> getTangramsFromFile(String pathname) {
-		ArrayList<Tangram> tangramsFromFile = new ArrayList<>();
+	public static ArrayList<Tangrams> getTangramsFromFile(String pathname) {
+		ArrayList<Tangrams> tangramsFromFile = new ArrayList<>();
 		List<String> content = new ArrayList<>();
 		try {
 			content = Files.readAllLines(Paths.get(pathname));
@@ -41,6 +41,10 @@ public class SolutionEvaluator {
 		//TODO
 
 		return tangramsFromFile;
+	}
+	
+	public static void main(String args[]) {
+		
 	}
 	
 }
