@@ -6,9 +6,20 @@ public class Tangrams {
 	
 	Tangrams(Shape main) {
 		emptyPuzzle = main;
+		shapes = new ArrayList<Shape>();
 	}
 	
 	public Shape getPuzzle() {
+		puzzle = new Shape(emptyPuzzle);
+		for (Shape shape : shapes) {
+			if (shape.getX() != -1 && shape.getY() != -1) {
+				try {
+					addShape(puzzle, shape);
+				} catch (Exception e) {
+					System.out.println("Illegal shape placement");
+				}
+			}
+		}
 		return puzzle;
 	}
 	
@@ -43,5 +54,17 @@ public class Tangrams {
 				parent.getGridComposition()[j + child.getX()][i + child.getY()].merge(child.getGridComposition()[j][i]);
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		Shape testShape = new Shape(2, 2);
+		GridSquare[][] newArray = new GridSquare[2][2];
+		newArray[0][0] = new GridSquare(false, false, false, true);
+		newArray[1][0] = new GridSquare(false, false, true, false);
+		newArray[0][1] = new GridSquare(false, true, false, false);
+		newArray[1][1] = new GridSquare(true, false, false, false);
+		testShape.setGridComposition(newArray);
+		Tangrams test = new Tangrams(testShape);
+		new TestBedGui(test);
 	}
 }
