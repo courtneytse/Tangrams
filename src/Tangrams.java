@@ -41,22 +41,38 @@ public class Tangrams {
 		}
 		try {
 			Shape child = new Shape(s);
+			child.setX(x);
+			child.setY(y);
 			addShape(puzzle, child);
 		} catch (Exception e) {
+			e.printStackTrace();
 			output = false;
 		}
 		return output;
 	}
 	
 	public void addShape(Shape parent, Shape child) throws Exception{
-		for (int i = 0; i < child.getHeight(); i++) {
-			for (int j = 0; j < child.getWidth(); j++) {
-				parent.getGridComposition()[j + child.getX()][i + child.getY()].merge(child.getGridComposition()[j][i]);
+		for (int y = 0; y < child.getHeight(); y++) {
+			for (int x = 0; x < child.getWidth(); x++) {
+				parent.getGridComposition()[x + child.getX()][y + child.getY()].merge(child.getGridComposition()[x][y]);
 			}
 		}
 	}
 	
-	public static void main(String[] args) {
+	public ArrayList<Shape> getShapes() {
+		return shapes;
+	}
+	
+	public void moveShape(int index, int newX, int newY) {
+		if (legalToPlace(newX, newY, shapes.get(index))) {
+			shapes.get(index).setX(newX);
+			shapes.get(index).setY(newY);
+		} else {
+			System.out.println("illegal placement");
+		}
+	}
+	
+	public static void showExample1() {
 		Shape testShape = new Shape(2, 2);
 		GridSquare[][] newArray = new GridSquare[2][2];
 		newArray[0][0] = new GridSquare(false, false, false, true);
@@ -65,6 +81,24 @@ public class Tangrams {
 		newArray[1][1] = new GridSquare(true, false, false, false);
 		testShape.setGridComposition(newArray);
 		Tangrams test = new Tangrams(testShape);
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 1));
+		test.moveShape(0, 1, 0);
 		new TestBedGui(test);
+	}
+	
+	public static void showExample2() {
+		Shape testShape = new Shape(6, 6);
+		GridSquare[][] newArray = new GridSquare[6][6];
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				newArray[i][j] = new GridSquare(false);
+			}
+		}
+		testShape.setGridComposition(newArray);
+		Tangrams test = new Tangrams(testShape);
+		new TestBedGui(test);
+	}
+	public static void main(String[] args) {
+
 	}
 }
