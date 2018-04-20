@@ -16,7 +16,7 @@ public class SolutionEvaluator {
 		return numSolved/tangrams.size();
 	}
 	
-	private boolean checkSoln(Tangrams soln) {
+	public boolean checkSoln(Tangrams soln) {
 		boolean match = true;
 		for(int i = 0; i < soln.getPuzzle().getHeight(); i++) {
 			for (int j = 0; j < soln.getPuzzle().getWidth(); j++) {
