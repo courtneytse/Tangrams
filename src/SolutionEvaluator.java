@@ -20,8 +20,8 @@ public class SolutionEvaluator {
 		boolean match = true;
 		for(Shape shape : soln) {
 			GridSquare[][] gridSquares = shape.getGridComposition();
-			for(int i=0; i<gridSquares.length; i++) {
-				for(int j=0; j<gridSquares[0].length; j++) {
+			for(int i=0; match && i<gridSquares.length; i++) {
+				for(int j=0; match && j<gridSquares[0].length; j++) {
 					if(!gridSquares[i][j].getAllFull())
 						match = false;
 				}
