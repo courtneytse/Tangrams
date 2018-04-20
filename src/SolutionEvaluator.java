@@ -8,23 +8,19 @@ public class SolutionEvaluator {
 	
 	public double evaluateSolution(Solution soln, ArrayList<Tangrams> tangrams) {
 		double numSolved = 0;
-		for(int i=0; i<tangrams.size(); i++) {
-			ArrayList<Shape> solnShapes = soln.solveTangram(tangrams.get(i));
-			if(checkSoln(solnShapes))
+		for (Tangrams t : tangrams) {
+			if (checkSoln(soln.solveTangram(t))) {
 				numSolved++;
+			}
 		}
 		return numSolved/tangrams.size();
 	}
 	
-	private boolean checkSoln(ArrayList<Shape> soln) {
+	private boolean checkSoln(Tangrams soln) {
 		boolean match = true;
-		for(Shape shape : soln) {
-			GridSquare[][] gridSquares = shape.getGridComposition();
-			for(int i=0; match && i<gridSquares.length; i++) {
-				for(int j=0; match && j<gridSquares[0].length; j++) {
-					if(!gridSquares[i][j].getAllFull())
-						match = false;
-				}
+		for(int i = 0; i < soln.getPuzzle().getHeight(); i++) {
+			for (int j = 0; j < soln.getPuzzle().getWidth(); j++) {
+				match = match && soln.getPuzzle().getGridComposition()[j][i].getAllFull();
 			}
 		}
 		return match;
