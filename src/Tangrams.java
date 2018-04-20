@@ -51,7 +51,7 @@ public class Tangrams {
 		return output;
 	}
 	
-	public void addShape(Shape parent, Shape child) throws Exception{
+	private void addShape(Shape parent, Shape child) throws Exception{
 		for (int y = 0; y < child.getHeight(); y++) {
 			for (int x = 0; x < child.getWidth(); x++) {
 				parent.getGridComposition()[x + child.getX()][y + child.getY()].merge(child.getGridComposition()[x][y]);
@@ -83,10 +83,13 @@ public class Tangrams {
 		Tangrams test = new Tangrams(testShape);
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 1));
 		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
+		test.getShapes().add(new RightTriangle(RightTriangle.TOP_LEFT, 1));
 		test.moveShape(0, 1, 0);
 		test.moveShape(1, 0, 0);
+		test.moveShape(2, 1, 1);
 		new TestBedGui(test);
 	}
+	
 	
 	public static void showExample2() {
 		Shape testShape = new Shape(6, 6);
@@ -98,9 +101,17 @@ public class Tangrams {
 		}
 		testShape.setGridComposition(newArray);
 		Tangrams test = new Tangrams(testShape);
+		test.getShapes().add(new Shape(new Diamond(4)));
+		test.moveShape(0, 0, 0);
+		test.getShapes().add(new Shape(new RightTriangle(RightTriangle.TOP_LEFT, 2)));
+		test.moveShape(1, 0, 0);
+		test.getShapes().add(new Rectangle(2, 6));
+		test.moveShape(2, 4, 0);
+		test.getShapes().add(new Shape(new HalfDiamond(HalfDiamond.LEFT, 2)));
+		test.moveShape(3, 3, 2);
 		new TestBedGui(test);
 	}
 	public static void main(String[] args) {
-		showExample1();
+		showExample2();
 	}
 }

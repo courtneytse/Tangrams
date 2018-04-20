@@ -3,15 +3,25 @@ import javax.swing.*;
 public class TestBedGui extends JPanel{
 
 	Tangrams disp;
-	JFrame frame;
+	JFrame frame, check;
 	
 	TestBedGui(Tangrams state) {
 		disp = state;
 		frame = new JFrame("Tangrams");
-		frame.setSize(new Dimension(800, 800));
+		frame.setSize(new Dimension(state.getEmptyPuzzle().getWidth() * 50 + 25, state.getEmptyPuzzle().getHeight() * 50 + 50));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(this);
 		frame.setVisible(true);
+		check = new JFrame("Is Valid?");
+		check.setContentPane(new JPanel());
+		if (SolutionEvaluator.checkSoln(state)) {
+			check.getContentPane().add(new JLabel("Solution is valid"));
+		} else {
+			check.getContentPane().add(new JLabel("Solution is not valid"));
+		}
+		check.pack();
+		check.setLocation(frame.getWidth(), 0);
+		check.setVisible(true);
 	}
 	
 	public void paintComponent(Graphics g) {
