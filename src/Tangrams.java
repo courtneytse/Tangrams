@@ -82,7 +82,9 @@ public class Tangrams {
 		testShape.setGridComposition(newArray);
 		Tangrams test = new Tangrams(testShape);
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 1));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
 		test.moveShape(0, 1, 0);
+		test.moveShape(1, 0, 0);
 		new TestBedGui(test);
 	}
 	
@@ -99,6 +101,6 @@ public class Tangrams {
 		new TestBedGui(test);
 	}
 	public static void main(String[] args) {
-
+		showExample1();
 	}
 }
