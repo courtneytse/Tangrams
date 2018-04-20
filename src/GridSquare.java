@@ -11,11 +11,14 @@ public class GridSquare {
 	}
 	
 	GridSquare(boolean bottomRight, boolean bottomLeft, boolean upperRight, boolean upperLeft) {
-		allFull = false;
-		botRight = bottomRight;
-		botLeft = bottomLeft;
-		topRight = upperRight;
-		topLeft = upperLeft;
+		try {
+			setBotRight(bottomRight);
+			setBotLeft(bottomLeft);
+			setTopRight(upperRight);
+			setTopLeft(upperLeft);
+		} catch (Exception e) {
+			System.out.println("Illegal square");
+		}
 	}
 	
 	public boolean getAllFull() {
@@ -64,6 +67,18 @@ public class GridSquare {
 	
 	public void setBotLeft(boolean input) throws Exception {
 		if (input && (botRight || botLeft || topLeft || allFull)) {
+			if (botLeft) {
+				System.out.println("BL");
+			}
+			if (botRight) {
+				System.out.println("BR");
+			}
+			if (topLeft) {
+				System.out.println("TL");
+			}
+			if (allFull) {
+				System.out.println("AF");
+			}
 			throw new Exception();
 		} else {
 			botLeft = input;

@@ -8,21 +8,25 @@ public class Shape {
 		width = xSize;
 		height = ySize;
 		gridComposition = new GridSquare[width][height];
+		x = -1;
+		y = -1;
 	}
 	
 	Shape(Shape copy) {
 		width = copy.getWidth();
 		height = copy.getHeight();
 		gridComposition = new GridSquare[width][height];
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				if (copy.getGridComposition()[j][i].getBotLeft() || copy.getGridComposition()[j][i].getBotRight() || copy.getGridComposition()[j][i].getTopLeft() || copy.getGridComposition()[j][i].getTopRight()) {
-					gridComposition[j][i] = new GridSquare(copy.getGridComposition()[j][i].getBotRight(), copy.getGridComposition()[j][i].getBotLeft(), copy.getGridComposition()[j][i].getTopRight(), copy.getGridComposition()[j][i].getTopLeft());
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				if (copy.getGridComposition()[x][y].getBotLeft() || copy.getGridComposition()[x][y].getBotRight() || copy.getGridComposition()[x][y].getTopLeft() || copy.getGridComposition()[x][y].getTopRight()) {
+					gridComposition[x][y] = new GridSquare(copy.getGridComposition()[x][y].getBotRight(), copy.getGridComposition()[x][y].getBotLeft(), copy.getGridComposition()[x][y].getTopRight(), copy.getGridComposition()[x][y].getTopLeft());
 				} else {
-					gridComposition[j][i] = new GridSquare(copy.getGridComposition()[j][i].getAllFull());
+					gridComposition[x][y] = new GridSquare(copy.getGridComposition()[x][y].getAllFull());
 				}
 			}
 		}
+		x = copy.getX();
+		y = copy.getY();
 	}
 	public void setGridComposition(GridSquare[][] newGrid) {
 		gridComposition = newGrid;
