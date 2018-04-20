@@ -63,6 +63,10 @@ public class Tangrams {
 		return shapes;
 	}
 	
+	public void setShapes(ArrayList<Shape> sh) {
+		shapes = sh;
+	}
+	
 	public void moveShape(int index, int newX, int newY) {
 		if (legalToPlace(newX, newY, shapes.get(index))) {
 			shapes.get(index).setX(newX);
