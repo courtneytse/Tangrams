@@ -17,10 +17,10 @@ public class TestBedGui extends JPanel{
 	public void paintComponent(Graphics g) {
 		this.setBackground(Color.WHITE);
 		g.setColor(Color.BLACK);
-		g.drawLine(0, 0, disp.getEmptyPuzzle().getWidth() * 25, 0);
-		g.drawLine(disp.getEmptyPuzzle().getWidth() * 25, 0, disp.getEmptyPuzzle().getWidth() * 25, disp.getEmptyPuzzle().getHeight() * 25);
-		g.drawLine(disp.getEmptyPuzzle().getWidth() * 25, disp.getEmptyPuzzle().getHeight() * 25, 0, disp.getEmptyPuzzle().getHeight() * 25);
-		g.drawLine(0, disp.getEmptyPuzzle().getHeight() * 25, 0, 0);
+		g.drawLine(0, 0, disp.getEmptyPuzzle().getWidth() * 50, 0);
+		g.drawLine(disp.getEmptyPuzzle().getWidth() * 50, 0, disp.getEmptyPuzzle().getWidth() * 50, disp.getEmptyPuzzle().getHeight() * 50);
+		g.drawLine(disp.getEmptyPuzzle().getWidth() * 50, disp.getEmptyPuzzle().getHeight() * 50, 0, disp.getEmptyPuzzle().getHeight() * 50);
+		g.drawLine(0, disp.getEmptyPuzzle().getHeight() * 50, 0, 0);
 		for (int y = 0; y < disp.getPuzzle().getHeight(); y++) {
 			for (int x = 0; x < disp.getPuzzle().getWidth(); x++) {
 				if (disp.getEmptyPuzzle().getGridComposition()[x][y].getAllFull()) {
@@ -62,7 +62,7 @@ public class TestBedGui extends JPanel{
 						}
 					}
 					if (s.getGridComposition()[x][y].getTopLeft()) {
-						g.fillPolygon(new int[] {(x + s.getX())*50, (x + s.getX())*50 + 24, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 24}, 3);
+						g.fillPolygon(new int[] {(x + s.getX())*50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 50}, 3);
 						g.setColor(Color.BLACK);
 						g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50);
 						if (x == 0) {
@@ -73,7 +73,7 @@ public class TestBedGui extends JPanel{
 						}
 					}
 					if (s.getGridComposition()[x][y].getTopRight()) {
-						g.fillPolygon(new int[] {(x + s.getX())*50 + 1, (x + s.getX())*50 + 50, (x + s.getX())*50 + 50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 24}, 3);
+						g.fillPolygon(new int[] {(x + s.getX())*50 + 1, (x + s.getX())*50 + 50, (x + s.getX())*50 + 50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 50}, 3);
 						g.setColor(Color.BLACK);
 						g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
 						if (x == s.getWidth() - 1) {
