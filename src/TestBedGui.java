@@ -118,5 +118,12 @@ public class TestBedGui extends JPanel{
 				}
 			}
 		}
+		g.setColor(new Color(0, 0, 0, 50));
+		for (int y = 0; y < disp.getPuzzle().getHeight(); y++) {
+			g.drawLine(0, y*50, disp.getPuzzle().getWidth()*50, y*50);
+		}
+		for (int x = 0; x < disp.getPuzzle().getWidth(); x++) {
+			g.drawLine(x*50, 0, x*50, disp.getPuzzle().getHeight()*50);
+		}
 	}
 }

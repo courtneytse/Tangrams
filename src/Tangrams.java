@@ -115,6 +115,7 @@ public class Tangrams {
 		test.moveShape(3, 3, 2);
 		new TestBedGui(test);
 	}
+	
 	public static void main(String[] args) {
 		showExample2();
 	}
