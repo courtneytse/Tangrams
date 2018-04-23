@@ -21,6 +21,9 @@ public class SolutionEvaluator {
 		for(int i = 0; i < soln.getPuzzle().getHeight(); i++) {
 			for (int j = 0; j < soln.getPuzzle().getWidth(); j++) {
 				match = match && soln.getPuzzle().getGridComposition()[j][i].getAllFull();
+				if (!soln.getPuzzle().getGridComposition()[j][i].getAllFull()) {
+					System.out.println(j + ", " + i);
+				}
 			}
 		}
 		return match;

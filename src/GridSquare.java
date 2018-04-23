@@ -42,6 +42,9 @@ public class GridSquare {
 	}
 	
 	public void merge(GridSquare sq) throws Exception {
+		if (sq.getAllFull() && !(topRight || botRight || topLeft || botLeft)) {
+			allFull = true;
+		}
 		if (sq.getTopRight()) {
 			setTopRight(sq.getTopRight());
 		}

@@ -51,14 +51,14 @@ public class Tangrams {
 		return output;
 	}
 	
-	private void addShape(Shape parent, Shape child) throws Exception{
+	private void addShape(Shape parent, Shape child) throws Exception {
 		for (int y = 0; y < child.getHeight(); y++) {
 			for (int x = 0; x < child.getWidth(); x++) {
 				parent.getGridComposition()[x + child.getX()][y + child.getY()].merge(child.getGridComposition()[x][y]);
 			}
 		}
 	}
-	
+
 	public ArrayList<Shape> getShapes() {
 		return shapes;
 	}
@@ -116,7 +116,40 @@ public class Tangrams {
 		new TestBedGui(test);
 	}
 	
+	public static void showExample3() {
+		Shape testShape = new Shape(6, 6);
+		GridSquare[][] newArray = new GridSquare[6][6];
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				newArray[i][j] = new GridSquare(false);
+			}
+		}
+		testShape.setGridComposition(newArray);
+		Tangrams test = new Tangrams(testShape);
+		test.getShapes().add(new Shape(new Diamond(4)));
+		test.moveShape(0, 0, 0);
+		test.getShapes().add(new Shape(new RightTriangle(RightTriangle.TOP_LEFT, 2)));
+		test.moveShape(1, 0, 0);
+		test.getShapes().add(new Rectangle(2, 6));
+		test.moveShape(2, 4, 0);
+		test.getShapes().add(new Shape(new HalfDiamond(HalfDiamond.LEFT, 2)));
+		test.moveShape(3, 3, 2);
+		test.getShapes().add(new RightTriangle(RightTriangle.TOP_RIGHT, 2));
+		test.moveShape(4, 2, 0);
+		test.getShapes().add(new HalfDiamond(HalfDiamond.RIGHT, 4));
+		test.moveShape(5, 0, 2);
+		test.getShapes().add(new Diamond(2));
+		test.moveShape(6, 2, 3);
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_RIGHT, 2));
+		test.moveShape(7, 0, 4);
+		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
+		test.moveShape(8, 3, 4);
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
+		test.moveShape(9, 2, 4);
+		new TestBedGui(test);
+	}
+	
 	public static void main(String[] args) {
-		showExample2();
+		showExample3();
 	}
 }
