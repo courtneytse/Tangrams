@@ -51,68 +51,69 @@ public class TestBedGui extends JPanel{
 			}
 		}
 		for (Shape s : disp.getShapes()) {
-			if (s.getX() != -1 && s.getY() != -1);
-			for (int y = 0; y < s.getHeight(); y++) {
-				for (int x = 0; x < s.getWidth(); x++) {
-					g.setColor(Color.RED);
-					if (s.getGridComposition()[x][y].getAllFull()) {
-						g.fillRect((x + s.getX())*50, (y + s.getY())*50, 50, 50);
-						g.setColor(Color.BLACK);
-						if (x == 0) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50, (y + s.getY())*50 + 50);
+			if (s.getX() != -1 && s.getY() != -1) {
+				for (int y = 0; y < s.getHeight(); y++) {
+					for (int x = 0; x < s.getWidth(); x++) {
+						g.setColor(Color.RED);
+						if (s.getGridComposition()[x][y].getAllFull()) {
+							g.fillRect((x + s.getX())*50, (y + s.getY())*50, 50, 50);
+							g.setColor(Color.BLACK);
+							if (x == 0) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50, (y + s.getY())*50 + 50);
+							}
+							if (x == s.getWidth() - 1) {
+								g.drawLine((x + s.getX())*50 + 50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							}
+							if (y == 0) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50);
+							}
+							if (y == s.getHeight() - 1) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							}
 						}
-						if (x == s.getWidth() - 1) {
-							g.drawLine((x + s.getX())*50 + 50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+						if (s.getGridComposition()[x][y].getTopLeft()) {
+							g.fillPolygon(new int[] {(x + s.getX())*50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 50}, 3);
+							g.setColor(Color.BLACK);
+							g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50);
+							if (x == 0) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50, (y + s.getY())*50 + 50);
+							}
+							if (y == 0) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50);
+							}
 						}
-						if (y == 0) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50);
+						if (s.getGridComposition()[x][y].getTopRight()) {
+							g.fillPolygon(new int[] {(x + s.getX())*50 + 1, (x + s.getX())*50 + 50, (x + s.getX())*50 + 50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 50}, 3);
+							g.setColor(Color.BLACK);
+							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							if (x == s.getWidth() - 1) {
+								g.drawLine((x + s.getX())*50 + 50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							}
+							if (y == 0) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50);
+							}
 						}
-						if (y == s.getHeight() - 1) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+						if (s.getGridComposition()[x][y].getBotLeft()) {
+							g.fillPolygon(new int[] {(x + s.getX())*50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50 + 50, (y + s.getY())*50 + 50}, 3);
+							g.setColor(Color.BLACK);
+							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							if (x == 0) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50, (y + s.getY())*50 + 50);
+							}
+							if (y == s.getHeight() - 1) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							}
 						}
-					}
-					if (s.getGridComposition()[x][y].getTopLeft()) {
-						g.fillPolygon(new int[] {(x + s.getX())*50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 50}, 3);
-						g.setColor(Color.BLACK);
-						g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50);
-						if (x == 0) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50, (y + s.getY())*50 + 50);
-						}
-						if (y == 0) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50);
-						}
-					}
-					if (s.getGridComposition()[x][y].getTopRight()) {
-						g.fillPolygon(new int[] {(x + s.getX())*50 + 1, (x + s.getX())*50 + 50, (x + s.getX())*50 + 50}, new int[] {(y + s.getY())*50, (y + s.getY())*50, (y + s.getY())*50 + 50}, 3);
-						g.setColor(Color.BLACK);
-						g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
-						if (x == s.getWidth() - 1) {
-							g.drawLine((x + s.getX())*50 + 50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
-						}
-						if (y == 0) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50);
-						}
-					}
-					if (s.getGridComposition()[x][y].getBotLeft()) {
-						g.fillPolygon(new int[] {(x + s.getX())*50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50 + 50, (y + s.getY())*50 + 50}, 3);
-						g.setColor(Color.BLACK);
-						g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
-						if (x == 0) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50, (x + s.getX())*50, (y + s.getY())*50 + 50);
-						}
-						if (y == s.getHeight() - 1) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
-						}
-					}
-					if (s.getGridComposition()[x][y].getBotRight()) {
-						g.fillPolygon(new int[] {(x + s.getX())*50 + 50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50 + 50, (y + s.getY())*50 + 50}, 3);
-						g.setColor(Color.BLACK);
-						g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50);
-						if (x == s.getWidth() - 1) {
-							g.drawLine((x + s.getX())*50 + 50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
-						}
-						if (y == s.getHeight() - 1) {
-							g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+						if (s.getGridComposition()[x][y].getBotRight()) {
+							g.fillPolygon(new int[] {(x + s.getX())*50 + 50, (x + s.getX())*50 + 50, (x + s.getX())*50}, new int[] {(y + s.getY())*50, (y + s.getY())*50 + 50, (y + s.getY())*50 + 50}, 3);
+							g.setColor(Color.BLACK);
+							g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50);
+							if (x == s.getWidth() - 1) {
+								g.drawLine((x + s.getX())*50 + 50, (y + s.getY())*50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							}
+							if (y == s.getHeight() - 1) {
+								g.drawLine((x + s.getX())*50, (y + s.getY())*50 + 50, (x + s.getX())*50 + 50, (y + s.getY())*50 + 50);
+							}
 						}
 					}
 				}
