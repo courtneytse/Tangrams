@@ -113,7 +113,14 @@ public class Tangrams {
 		test.moveShape(2, 4, 0);
 		test.getShapes().add(new Shape(new HalfDiamond(HalfDiamond.LEFT, 2)));
 		test.moveShape(3, 3, 2);
+		test.getShapes().add(new RightTriangle(RightTriangle.TOP_RIGHT, 2));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.RIGHT, 4));
+		test.getShapes().add(new Diamond(2));
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_RIGHT, 2));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
 		new TestBedGui(test);
+		new ShapeTrayGui(test);
 	}
 	
 	public static void showExample3() {
@@ -150,6 +157,6 @@ public class Tangrams {
 	}
 	
 	public static void main(String[] args) {
-		showExample3();
+		showExample2();
 	}
 }

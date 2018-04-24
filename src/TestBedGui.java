@@ -24,6 +24,11 @@ public class TestBedGui extends JPanel{
 		check.setVisible(true);
 	}
 	
+	public void update(Tangrams state) {
+		disp = state;
+		paintComponent(this.getGraphics());
+	}
+	
 	public void paintComponent(Graphics g) {
 		this.setBackground(Color.WHITE);
 		g.setColor(Color.BLACK);
