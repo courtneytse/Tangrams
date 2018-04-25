@@ -22,6 +22,8 @@ public class ShapeTrayGui extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		int originX = 0, originY = 0, nextY = 0;
 		for (Shape s : disp.getShapes()) {
 			if (s.getX() == -1 && s.getY() == -1) {

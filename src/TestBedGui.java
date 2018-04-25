@@ -30,7 +30,8 @@ public class TestBedGui extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g) {
-		this.setBackground(Color.WHITE);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.BLACK);
 		g.drawLine(0, 0, disp.getEmptyPuzzle().getWidth() * 50, 0);
 		g.drawLine(disp.getEmptyPuzzle().getWidth() * 50, 0, disp.getEmptyPuzzle().getWidth() * 50, disp.getEmptyPuzzle().getHeight() * 50);

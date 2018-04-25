@@ -9,6 +9,14 @@ public class Tangrams {
 		shapes = new ArrayList<Shape>();
 	}
 	
+	Tangrams(Tangrams copy) {
+		emptyPuzzle = new Shape(copy.getEmptyPuzzle());
+		shapes = new ArrayList<Shape>();
+		for (Shape s : copy.getShapes()) {
+			shapes.add(new Shape(s));
+		}
+	}
+	
 	public Shape getPuzzle() {
 		puzzle = new Shape(emptyPuzzle);
 		for (Shape shape : shapes) {
@@ -45,12 +53,24 @@ public class Tangrams {
 			child.setY(y);
 			addShape(puzzle, child);
 		} catch (Exception e) {
-			e.printStackTrace();
 			output = false;
 		}
 		return output;
 	}
 	
+	public int empty() {
+		int output = 0;
+		for (int y = 0; y < getPuzzle().getHeight(); y++) {
+			for (int x = 0; x < getPuzzle().getWidth(); x++) {
+				if (getPuzzle().getGridComposition()[x][y].getAllFull()) {
+					output += 2;
+				} else if (getPuzzle().getGridComposition()[x][y].getTopLeft() || getPuzzle().getGridComposition()[x][y].getTopRight() || getPuzzle().getGridComposition()[x][y].getBotLeft() || getPuzzle().getGridComposition()[x][y].getBotRight()) {
+					output++;
+				}
+			}
+		}
+		return output;
+	}
 	private void addShape(Shape parent, Shape child) throws Exception {
 		for (int y = 0; y < child.getHeight(); y++) {
 			for (int x = 0; x < child.getWidth(); x++) {
