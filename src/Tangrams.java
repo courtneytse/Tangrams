@@ -2,47 +2,47 @@ import java.util.ArrayList;
 public class Tangrams {
 
 	ArrayList<Shape> shapes;
-	Shape emptyPuzzle, puzzle;
+	Shape puzzle;
 	
 	Tangrams(Shape main) {
-		emptyPuzzle = main;
+		puzzle = main;
 		shapes = new ArrayList<Shape>();
 	}
 	
 	Tangrams(Tangrams copy) {
-		emptyPuzzle = new Shape(copy.getEmptyPuzzle());
+		puzzle = new Shape(copy.getPuzzle());
 		shapes = new ArrayList<Shape>();
 		for (Shape s : copy.getShapes()) {
 			shapes.add(new Shape(s));
 		}
 	}
 	
-	public Shape getPuzzle() {
-		puzzle = new Shape(emptyPuzzle);
+	public Shape getFullPuzzle() {
+		Shape fullPuzzle = new Shape(puzzle);
 		for (Shape shape : shapes) {
 			if (shape.getX() != -1 && shape.getY() != -1) {
 				try {
-					addShape(puzzle, shape);
+					addShape(fullPuzzle, shape);
 				} catch (Exception e) {
 					System.out.println("Illegal shape placement");
 				}
 			}
 		}
-		return puzzle;
+		return fullPuzzle;
 	}
 	
-	public Shape getEmptyPuzzle() {
-		return emptyPuzzle;
+	public Shape getPuzzle() {
+		return puzzle;
 	}
 	
 	public boolean legalToPlace(int x, int y, Shape s) {
 		boolean output = true;
-		puzzle = getPuzzle();
+		Shape testPuzzle = getFullPuzzle();
 		try {
 			Shape child = new Shape(s);
 			child.setX(x);
 			child.setY(y);
-			addShape(puzzle, child);
+			addShape(testPuzzle, child);
 		} catch (Exception e) {
 			output = false;
 		}
@@ -51,11 +51,11 @@ public class Tangrams {
 	
 	public int empty() {
 		int output = 0;
-		for (int y = 0; y < getPuzzle().getHeight(); y++) {
-			for (int x = 0; x < getPuzzle().getWidth(); x++) {
-				if (getPuzzle().getGridComposition()[x][y].getAllFull()) {
+		for (int y = 0; y < getFullPuzzle().getHeight(); y++) {
+			for (int x = 0; x < getFullPuzzle().getWidth(); x++) {
+				if (getFullPuzzle().getGridComposition()[x][y].getAllFull()) {
 					output += 2;
-				} else if (getPuzzle().getGridComposition()[x][y].getTopLeft() || getPuzzle().getGridComposition()[x][y].getTopRight() || getPuzzle().getGridComposition()[x][y].getBotLeft() || getPuzzle().getGridComposition()[x][y].getBotRight()) {
+				} else if (getFullPuzzle().getGridComposition()[x][y].getTopLeft() || getFullPuzzle().getGridComposition()[x][y].getTopRight() || getFullPuzzle().getGridComposition()[x][y].getBotLeft() || getFullPuzzle().getGridComposition()[x][y].getBotRight()) {
 					output++;
 				}
 			}

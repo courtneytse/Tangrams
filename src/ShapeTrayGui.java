@@ -11,7 +11,7 @@ public class ShapeTrayGui extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(new Dimension(800, 800));
 		frame.setSize(this.getSize());
-		frame.setLocation(state.getEmptyPuzzle().getWidth()*50, 0);
+		frame.setLocation(state.getPuzzle().getWidth()*50, 0);
 		frame.setContentPane(this);
 		frame.setVisible(true);
 	}
