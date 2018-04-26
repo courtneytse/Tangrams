@@ -177,6 +177,6 @@ public class Tangrams {
 	}
 	
 	public static void main(String[] args) {
-		showExample2();
+		showExample3();
 	}
 }
