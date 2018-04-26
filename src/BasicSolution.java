@@ -12,7 +12,7 @@ public class BasicSolution implements Solution {
 	public Tangrams solveTangram(Tangrams tangram) {
 		layer++;
 		Tangrams output = tangram;
-		Tangrams test;
+		Tangrams test = new Tangrams(tangram);
 		if (layer == 1) {
 			gui = new TestBedGui(tangram);
 			shapeGui = new ShapeTrayGui(tangram);
@@ -26,10 +26,12 @@ public class BasicSolution implements Solution {
 				for (int y = 0; y <= tangram.getEmptyPuzzle().getHeight() - s.getHeight(); y++) {
 					for (int x = 0; x <= tangram.getEmptyPuzzle().getWidth() - s.getWidth(); x++) {
 						if (tangram.legalToPlace(x, y, s)) {
-							test = new Tangrams(tangram);
 							test.moveShape(shapeNum, x, y);
-							output = solveTangram(test);
+							if (solveTangram(test).empty() > output.empty()) {
+								output = test;
+							}
 						}
+						
 					}
 				}
 			}

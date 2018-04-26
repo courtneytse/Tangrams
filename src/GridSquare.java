@@ -42,8 +42,19 @@ public class GridSquare {
 	}
 	
 	public void merge(GridSquare sq) throws Exception {
-		if (sq.getAllFull() && !(topRight || botRight || topLeft || botLeft)) {
-			allFull = true;
+		if (sq.getAllFull()) {
+			if (!(topRight || botRight || topLeft || botLeft || allFull)) {
+				allFull = true;
+			} else {
+				throw new Exception();
+			}
+		}
+		if (this.getAllFull()) {
+			if (!(sq.getTopLeft() || sq.getTopRight() || sq.getBotLeft() || sq.getBotRight() || sq.getAllFull())) {
+				allFull = true;
+			} else {
+				throw new Exception();
+			}
 		}
 		if (sq.getTopRight()) {
 			setTopRight(sq.getTopRight());
@@ -70,18 +81,6 @@ public class GridSquare {
 	
 	public void setBotLeft(boolean input) throws Exception {
 		if (input && (botRight || botLeft || topLeft || allFull)) {
-			if (botLeft) {
-				System.out.println("BL");
-			}
-			if (botRight) {
-				System.out.println("BR");
-			}
-			if (topLeft) {
-				System.out.println("TL");
-			}
-			if (allFull) {
-				System.out.println("AF");
-			}
 			throw new Exception();
 		} else {
 			botLeft = input;
