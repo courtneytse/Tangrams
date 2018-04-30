@@ -2,51 +2,63 @@ import java.util.ArrayList;
 public class Tangrams {
 
 	ArrayList<Shape> shapes;
-	Shape emptyPuzzle, puzzle;
+	Shape puzzle;
 	
 	Tangrams(Shape main) {
-		emptyPuzzle = main;
+		puzzle = main;
 		shapes = new ArrayList<Shape>();
 	}
 	
-	public Shape getPuzzle() {
-		puzzle = new Shape(emptyPuzzle);
+	Tangrams(Tangrams copy) {
+		puzzle = new Shape(copy.getPuzzle());
+		shapes = new ArrayList<Shape>();
+		for (Shape s : copy.getShapes()) {
+			shapes.add(new Shape(s));
+		}
+	}
+	
+	public Shape getFullPuzzle() {
+		Shape fullPuzzle = new Shape(puzzle);
 		for (Shape shape : shapes) {
 			if (shape.getX() != -1 && shape.getY() != -1) {
 				try {
-					addShape(puzzle, shape);
+					addShape(fullPuzzle, shape);
 				} catch (Exception e) {
 					System.out.println("Illegal shape placement");
 				}
 			}
 		}
-		return puzzle;
+		return fullPuzzle;
 	}
 	
-	public Shape getEmptyPuzzle() {
-		return emptyPuzzle;
+	public Shape getPuzzle() {
+		return puzzle;
 	}
 	
 	public boolean legalToPlace(int x, int y, Shape s) {
 		boolean output = true;
-		puzzle = new Shape(emptyPuzzle);
-		for (Shape shape : shapes) {
-			if (shape.getX() != -1 && shape.getY() != -1) {
-				try {
-					addShape(puzzle, shape);
-				} catch (Exception e) {
-					System.out.println("Illegal shape placement");
-				}
-			}
-		}
+		Shape testPuzzle = getFullPuzzle();
 		try {
 			Shape child = new Shape(s);
 			child.setX(x);
 			child.setY(y);
-			addShape(puzzle, child);
+			addShape(testPuzzle, child);
 		} catch (Exception e) {
-			e.printStackTrace();
 			output = false;
+		}
+		return output;
+	}
+	
+	public int empty() {
+		int output = 0;
+		for (int y = 0; y < getFullPuzzle().getHeight(); y++) {
+			for (int x = 0; x < getFullPuzzle().getWidth(); x++) {
+				if (getFullPuzzle().getGridComposition()[x][y].getAllFull()) {
+					output += 2;
+				} else if (getFullPuzzle().getGridComposition()[x][y].getTopLeft() || getFullPuzzle().getGridComposition()[x][y].getTopRight() || getFullPuzzle().getGridComposition()[x][y].getBotLeft() || getFullPuzzle().getGridComposition()[x][y].getBotRight()) {
+					output++;
+				}
+			}
 		}
 		return output;
 	}
@@ -113,7 +125,14 @@ public class Tangrams {
 		test.moveShape(2, 4, 0);
 		test.getShapes().add(new Shape(new HalfDiamond(HalfDiamond.LEFT, 2)));
 		test.moveShape(3, 3, 2);
+		test.getShapes().add(new RightTriangle(RightTriangle.TOP_RIGHT, 2));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.RIGHT, 4));
+		test.getShapes().add(new Diamond(2));
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_RIGHT, 2));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
+		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
 		new TestBedGui(test);
+		new ShapeTrayGui(test);
 	}
 	
 	public static void showExample3() {

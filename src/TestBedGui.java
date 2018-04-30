@@ -8,7 +8,7 @@ public class TestBedGui extends JPanel{
 	TestBedGui(Tangrams state) {
 		disp = state;
 		frame = new JFrame("Tangrams");
-		frame.setSize(new Dimension(state.getEmptyPuzzle().getWidth() * 50 + 25, state.getEmptyPuzzle().getHeight() * 50 + 50));
+		frame.setSize(new Dimension(state.getPuzzle().getWidth() * 50 + 25, state.getPuzzle().getHeight() * 50 + 50));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(this);
 		frame.setVisible(true);
@@ -24,28 +24,34 @@ public class TestBedGui extends JPanel{
 		check.setVisible(true);
 	}
 	
+	public void update(Tangrams state) {
+		disp = state;
+		paintComponent(this.getGraphics());
+	}
+	
 	public void paintComponent(Graphics g) {
-		this.setBackground(Color.WHITE);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.BLACK);
-		g.drawLine(0, 0, disp.getEmptyPuzzle().getWidth() * 50, 0);
-		g.drawLine(disp.getEmptyPuzzle().getWidth() * 50, 0, disp.getEmptyPuzzle().getWidth() * 50, disp.getEmptyPuzzle().getHeight() * 50);
-		g.drawLine(disp.getEmptyPuzzle().getWidth() * 50, disp.getEmptyPuzzle().getHeight() * 50, 0, disp.getEmptyPuzzle().getHeight() * 50);
-		g.drawLine(0, disp.getEmptyPuzzle().getHeight() * 50, 0, 0);
-		for (int y = 0; y < disp.getPuzzle().getHeight(); y++) {
-			for (int x = 0; x < disp.getPuzzle().getWidth(); x++) {
-				if (disp.getEmptyPuzzle().getGridComposition()[x][y].getAllFull()) {
+		g.drawLine(0, 0, disp.getPuzzle().getWidth() * 50, 0);
+		g.drawLine(disp.getPuzzle().getWidth() * 50, 0, disp.getPuzzle().getWidth() * 50, disp.getPuzzle().getHeight() * 50);
+		g.drawLine(disp.getPuzzle().getWidth() * 50, disp.getPuzzle().getHeight() * 50, 0, disp.getPuzzle().getHeight() * 50);
+		g.drawLine(0, disp.getPuzzle().getHeight() * 50, 0, 0);
+		for (int y = 0; y < disp.getFullPuzzle().getHeight(); y++) {
+			for (int x = 0; x < disp.getFullPuzzle().getWidth(); x++) {
+				if (disp.getPuzzle().getGridComposition()[x][y].getAllFull()) {
 					g.fillRect(x * 50, y * 50, 50, 50);
 				}
-				if (disp.getEmptyPuzzle().getGridComposition()[x][y].getTopLeft()) {
+				if (disp.getPuzzle().getGridComposition()[x][y].getTopLeft()) {
 					g.fillPolygon(new int[] {x*50, x*50 + 50, x*50}, new int[] {y*50, y*50, y*50 + 50}, 3);
 				}
-				if (disp.getEmptyPuzzle().getGridComposition()[x][y].getTopRight()) {
+				if (disp.getPuzzle().getGridComposition()[x][y].getTopRight()) {
 					g.fillPolygon(new int[] {x*50, x*50 + 50, x*50 + 50}, new int[] {y*50, y*50, y*50 + 50}, 3);
 				}
-				if (disp.getEmptyPuzzle().getGridComposition()[x][y].getBotLeft()) {
+				if (disp.getPuzzle().getGridComposition()[x][y].getBotLeft()) {
 					g.fillPolygon(new int[] {x*50, x*50 + 50, x*50}, new int[] {y*50, y*50 + 50, y*50 + 50}, 3);
 				}
-				if (disp.getEmptyPuzzle().getGridComposition()[x][y].getBotRight()) {
+				if (disp.getPuzzle().getGridComposition()[x][y].getBotRight()) {
 					g.fillPolygon(new int[] {x*50 + 50, x*50 + 50, x*50}, new int[] {y*50, y*50 + 50, y*50 + 50}, 3);
 				}
 			}
@@ -119,12 +125,12 @@ public class TestBedGui extends JPanel{
 				}
 			}
 		}
-		g.setColor(new Color(0, 0, 0, 50));
-		for (int y = 0; y < disp.getPuzzle().getHeight(); y++) {
-			g.drawLine(0, y*50, disp.getPuzzle().getWidth()*50, y*50);
-		}
-		for (int x = 0; x < disp.getPuzzle().getWidth(); x++) {
-			g.drawLine(x*50, 0, x*50, disp.getPuzzle().getHeight()*50);
-		}
+//		g.setColor(new Color(0, 0, 0, 50));
+//		for (int y = 0; y < disp.getFullPuzzle().getHeight(); y++) {
+//			g.drawLine(0, y*50, disp.getFullPuzzle().getWidth()*50, y*50);
+//		}
+//		for (int x = 0; x < disp.getFullPuzzle().getWidth(); x++) {
+//			g.drawLine(x*50, 0, x*50, disp.getFullPuzzle().getHeight()*50);
+//		}
 	}
 }

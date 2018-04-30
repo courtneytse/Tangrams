@@ -15,6 +15,8 @@ public class Shape {
 	Shape(Shape copy) {
 		width = copy.getWidth();
 		height = copy.getHeight();
+		x = copy.getX();
+		y = copy.getY();
 		gridComposition = new GridSquare[width][height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
