@@ -49,20 +49,6 @@ public class Tangrams {
 		return output;
 	}
 	
-	public int empty() {
-		int output = 0;
-		for (int y = 0; y < getFullPuzzle().getHeight(); y++) {
-			for (int x = 0; x < getFullPuzzle().getWidth(); x++) {
-				if (getFullPuzzle().getGridComposition()[x][y].getAllFull()) {
-					output += 2;
-				} else if (getFullPuzzle().getGridComposition()[x][y].getTopLeft() || getFullPuzzle().getGridComposition()[x][y].getTopRight() || getFullPuzzle().getGridComposition()[x][y].getBotLeft() || getFullPuzzle().getGridComposition()[x][y].getBotRight()) {
-					output++;
-				}
-			}
-		}
-		return output;
-	}
-	
 	private void addShape(Shape parent, Shape child) throws Exception {
 		for (int y = 0; y < child.getHeight(); y++) {
 			for (int x = 0; x < child.getWidth(); x++) {

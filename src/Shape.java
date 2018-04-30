@@ -15,21 +15,33 @@ public class Shape {
 	Shape(Shape copy) {
 		width = copy.getWidth();
 		height = copy.getHeight();
-		x = copy.getX();
-		y = copy.getY();
 		gridComposition = new GridSquare[width][height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (copy.getGridComposition()[x][y].getBotLeft() || copy.getGridComposition()[x][y].getBotRight() || copy.getGridComposition()[x][y].getTopLeft() || copy.getGridComposition()[x][y].getTopRight()) {
-					gridComposition[x][y] = new GridSquare(copy.getGridComposition()[x][y].getBotRight(), copy.getGridComposition()[x][y].getBotLeft(), copy.getGridComposition()[x][y].getTopRight(), copy.getGridComposition()[x][y].getTopLeft());
-				} else {
-					gridComposition[x][y] = new GridSquare(copy.getGridComposition()[x][y].getAllFull());
-				}
+				gridComposition[x][y] = new GridSquare(false);
+				try {
+				gridComposition[x][y].merge(copy.getGridComposition()[x][y]);
+				} catch (Exception e) {};
 			}
 		}
 		x = copy.getX();
 		y = copy.getY();
 	}
+	
+	public int getArea() {
+		int output = 0;
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				if (gridComposition[x][y].getAllFull()) {
+					output += 2;
+				} else if (gridComposition[x][y].getTopLeft() || gridComposition[x][y].getTopRight() || gridComposition[x][y].getBotLeft() || gridComposition[x][y].getBotRight()) {
+					output++;
+				}
+			}
+		}
+		return output;
+	}
+	
 	public void setGridComposition(GridSquare[][] newGrid) {
 		gridComposition = newGrid;
 		width = newGrid.length;

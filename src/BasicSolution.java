@@ -27,7 +27,7 @@ public class BasicSolution implements Solution {
 						if (tangram.legalToPlace(x, y, s)) {
 							Tangrams test = new Tangrams(tangram);
 							test.moveShape(shapeNum, x, y);
-							if (solveTangram(test).empty() > output.empty()) {
+							if (solveTangram(test).getFullPuzzle().getArea() > output.getFullPuzzle().getArea()) {
 								output = test;
 							}
 						}
