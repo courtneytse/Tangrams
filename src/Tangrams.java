@@ -166,6 +166,7 @@ public class Tangrams {
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
 		test.moveShape(9, 2, 4);
 		new TestBedGui(test);
+		new ShapeTrayGui(test);
 	}
 	
 	public static void main(String[] args) {
