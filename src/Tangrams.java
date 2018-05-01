@@ -37,7 +37,7 @@ public class Tangrams {
 	
 	public boolean legalToPlace(int x, int y, Shape s) {
 		boolean output = true;
-		Shape testPuzzle = new Shape(getFullPuzzle());
+		Shape testPuzzle = getFullPuzzle();
 		try {
 			Shape child = new Shape(s);
 			child.setX(x);

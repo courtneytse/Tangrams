@@ -50,7 +50,7 @@ public class GridSquare {
 				throw new Exception();
 			}
 		}
-		if (this.getAllFull()) {
+		else if (this.getAllFull()) {
 			if (!(sq.getTopLeft() || sq.getTopRight() || sq.getBotLeft() || sq.getBotRight() || sq.getAllFull())) {
 				allFull = true;
 			} else {

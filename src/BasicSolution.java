@@ -33,7 +33,6 @@ public class BasicSolution implements Solution {
 							}
 						} else {
 							System.out.println("could not place " + s + " at x=" + x + ", y=" + y);
-							pause.nextLine();
 						}
 					}
 				}
