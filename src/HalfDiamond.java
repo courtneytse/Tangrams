@@ -2,7 +2,7 @@
 public class HalfDiamond extends Shape{
 
 	public static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
-	
+	int dir;
 	/**
 	 * baseLength must be even
 	 * @param direction
@@ -10,6 +10,7 @@ public class HalfDiamond extends Shape{
 	 */
 	HalfDiamond(int direction, int baseLength) {
 		super(baseLength, baseLength);
+		dir = direction;
 		GridSquare[][] newArray;
 		if (direction == UP || direction == DOWN) {
 			newArray = new GridSquare[baseLength][baseLength/2];
@@ -73,6 +74,19 @@ public class HalfDiamond extends Shape{
 		this.setGridComposition(newArray);
 	}
 	
+	public String toString() {
+		String output = "Half-diamond: [width=" + getWidth() + "][height=" + getHeight()+"][Direction=";
+		if (dir == UP) {
+			output += "UP]";
+		} else if (dir == LEFT) {
+			output += "LEFT]";
+		} else if (dir == RIGHT) {
+			output += "RIGHT]";
+		} else if (dir == DOWN) {
+			output += "DOWN]";
+		}
+		return output;
+	}
 	public static void main(String[] args) {
 		HalfDiamond test = new HalfDiamond(HalfDiamond.LEFT, 8);
 		for (int y = 0; y < test.getHeight(); y++) {

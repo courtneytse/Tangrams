@@ -31,7 +31,6 @@ public class BasicSolution implements Solution {
 								output = test;
 							}
 						}
-						
 					}
 				}
 			}

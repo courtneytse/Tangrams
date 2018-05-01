@@ -2,10 +2,11 @@
 public class RightTriangle extends Shape {
 
 	public static final int TOP_RIGHT = 0, BOT_RIGHT = 1, BOT_LEFT = 2, TOP_LEFT = 3;
-	
+	int dir;
 	
 	RightTriangle(int direction, int size) {
 		super(size, size);
+		dir = direction;
 		GridSquare[][] newArray = new GridSquare[size][size];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
@@ -60,5 +61,19 @@ public class RightTriangle extends Shape {
 				}
 			}System.out.println();
 		}
+	}
+	
+	public String toString() {
+		String output = "Right_Triangle: [width=" + getWidth() + "][height=" + getHeight()+"]";
+		if (dir == TOP_RIGHT) {
+			output += "TOP_RIGHT]";
+		} else if (dir == TOP_LEFT) {
+			output += "TOP_LEFT]";
+		} else if (dir == BOT_RIGHT) {
+			output += "BOT_RIGHT]";
+		} else if (dir == BOT_LEFT) {
+			output += "BOT_LEFT]";
+		}
+		return output;
 	}
 }

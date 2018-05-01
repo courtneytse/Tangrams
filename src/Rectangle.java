@@ -11,4 +11,8 @@ public class Rectangle extends Shape{
 		}
 		setGridComposition(newArray);
 	}
+	
+	public String toString() {
+		return "Rectangle: [width=" + getWidth() + "][height=" + getHeight()+"]";
+	}
 }

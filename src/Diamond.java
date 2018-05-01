@@ -35,6 +35,9 @@ public class Diamond extends Shape {
 		this.setGridComposition(newArray);
 	}
 	
+	public String toString() {
+		return "Diamond: [width=" + getWidth() + "][height=" + getHeight()+"]";
+	}
 	public static void main(String[] args) {
 		Diamond test = new Diamond(8);
 		for (int y = 0; y < 8; y++) {
