@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 public class BasicSolution implements Solution {
 
 	TestBedGui gui;
@@ -8,8 +8,9 @@ public class BasicSolution implements Solution {
 	BasicSolution() {
 		layer = 0;
 	}
-	
+	Scanner pause;
 	public Tangrams solveTangram(Tangrams tangram) {
+		pause = new Scanner(System.in);
 		layer++;
 		Tangrams output = tangram;
 		if (layer == 1) {
@@ -30,6 +31,9 @@ public class BasicSolution implements Solution {
 							if (solveTangram(test).getFullPuzzle().getArea() > output.getFullPuzzle().getArea()) {
 								output = test;
 							}
+						} else {
+							System.out.println("could not place " + s + " at x=" + x + ", y=" + y);
+							pause.nextLine();
 						}
 					}
 				}
@@ -49,10 +53,10 @@ public class BasicSolution implements Solution {
 		}
 		testShape.setGridComposition(newArray);
 		Tangrams test = new Tangrams(testShape);
-		test.getShapes().add(new Shape(new Diamond(4)));
-		test.getShapes().add(new Shape(new RightTriangle(RightTriangle.TOP_LEFT, 2)));
+		test.getShapes().add(new Diamond(4));
+		test.getShapes().add(new RightTriangle(RightTriangle.TOP_LEFT, 2));
 		test.getShapes().add(new Rectangle(2, 6));
-		test.getShapes().add(new Shape(new HalfDiamond(HalfDiamond.LEFT, 2)));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
 		test.getShapes().add(new RightTriangle(RightTriangle.TOP_RIGHT, 2));
 		test.getShapes().add(new HalfDiamond(HalfDiamond.RIGHT, 4));
 		test.getShapes().add(new Diamond(2));

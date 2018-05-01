@@ -20,7 +20,7 @@ public class Shape {
 			for (int x = 0; x < width; x++) {
 				gridComposition[x][y] = new GridSquare(false);
 				try {
-				gridComposition[x][y].merge(copy.getGridComposition()[x][y]);
+					gridComposition[x][y].merge(copy.getGridComposition()[x][y]);
 				} catch (Exception e) {};
 			}
 		}

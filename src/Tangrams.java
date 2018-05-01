@@ -37,7 +37,7 @@ public class Tangrams {
 	
 	public boolean legalToPlace(int x, int y, Shape s) {
 		boolean output = true;
-		Shape testPuzzle = getFullPuzzle();
+		Shape testPuzzle = new Shape(getFullPuzzle());
 		try {
 			Shape child = new Shape(s);
 			child.setX(x);
@@ -131,13 +131,13 @@ public class Tangrams {
 		}
 		testShape.setGridComposition(newArray);
 		Tangrams test = new Tangrams(testShape);
-		test.getShapes().add(new Shape(new Diamond(4)));
+		test.getShapes().add(new Diamond(4));
 		test.moveShape(0, 0, 0);
-		test.getShapes().add(new Shape(new RightTriangle(RightTriangle.TOP_LEFT, 2)));
+		test.getShapes().add(new RightTriangle(RightTriangle.TOP_LEFT, 2));
 		test.moveShape(1, 0, 0);
 		test.getShapes().add(new Rectangle(2, 6));
 		test.moveShape(2, 4, 0);
-		test.getShapes().add(new Shape(new HalfDiamond(HalfDiamond.LEFT, 2)));
+		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
 		test.moveShape(3, 3, 2);
 		test.getShapes().add(new RightTriangle(RightTriangle.TOP_RIGHT, 2));
 		test.moveShape(4, 2, 0);

@@ -46,6 +46,7 @@ public class GridSquare {
 			if (!(topRight || botRight || topLeft || botLeft || allFull)) {
 				allFull = true;
 			} else {
+				System.out.println("tried to merge full square into non-empty square");
 				throw new Exception();
 			}
 		}
@@ -53,21 +54,15 @@ public class GridSquare {
 			if (!(sq.getTopLeft() || sq.getTopRight() || sq.getBotLeft() || sq.getBotRight() || sq.getAllFull())) {
 				allFull = true;
 			} else {
+				System.out.println(sq.getAllFull());
+				System.out.println("tried to merge non-empty square into full square");
 				throw new Exception();
 			}
 		}
-		if (sq.getTopRight()) {
-			setTopRight(sq.getTopRight());
-		}
-		if (sq.getTopLeft()) {
-			setTopLeft(sq.getTopLeft());
-		}
-		if (sq.getBotLeft()) {
-			setBotLeft(sq.getBotLeft());
-		}
-		if (sq.getBotRight()) {
-			setBotRight(sq.getBotRight());
-		}
+		setTopRight(sq.getTopRight());
+		setTopLeft(sq.getTopLeft());
+		setBotLeft(sq.getBotLeft());
+		setBotRight(sq.getBotRight());
 	}
 	
 	public void setBotRight(boolean input) throws Exception {
