@@ -46,8 +46,8 @@ public class GridSquare {
 		setTopLeft(sq.getTopLeft());
 		setBotLeft(sq.getBotLeft());
 		setBotRight(sq.getBotRight());
-		if (sq.getAllFull()) {
-			if (!(this.getBotLeft() || this.getBotRight() || this.getTopLeft() || this.getTopRight()) || this.getAllFull()) {
+		if (sq.getAllFull() && (!(sq.getTopLeft() || sq.getTopRight() || sq.getBotLeft() || sq.getBotRight()))) {
+			if (!(this.getBotLeft() || this.getBotRight() || this.getTopLeft() || this.getTopRight() || this.getAllFull())) {
 				allFull =  true;
 			} else {
 				throw new Exception();
@@ -60,7 +60,9 @@ public class GridSquare {
 			throw new Exception();
 		} else {
 			botRight = input;
-			allFull = botRight && topLeft;
+			if (input) {
+				allFull = botRight && topLeft;
+			}
 		}
 	}
 	
@@ -69,7 +71,9 @@ public class GridSquare {
 			throw new Exception();
 		} else {
 			botLeft = input;
-			allFull = botLeft && topRight;
+			if (input) {
+				allFull = botLeft && topRight;
+			}
 		}
 	}
 	
@@ -78,7 +82,9 @@ public class GridSquare {
 			throw new Exception();
 		} else {
 			topRight = input;
-			allFull = topRight && botLeft;
+			if (input) {
+				allFull = topRight && botLeft;
+			}
 		}
 	}
 	
@@ -87,7 +93,9 @@ public class GridSquare {
 			throw new Exception();
 		} else {
 			topLeft = input;
-			allFull = topLeft && botRight;
+			if (input) {
+				allFull = topLeft && botRight;
+			}
 		}
 	}
 }

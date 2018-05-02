@@ -24,7 +24,9 @@ public class Tangrams {
 				try {
 					addShape(fullPuzzle, shape);
 				} catch (Exception e) {
-					System.out.println("Illegal shape placement");
+					if (legalToPlace(shape.getX(), shape.getY(), shape)) {
+						System.out.println("Illegal shape placement");
+					}
 				}
 			}
 		}
@@ -36,16 +38,22 @@ public class Tangrams {
 	}
 	
 	public boolean legalToPlace(int x, int y, Shape s) {
-		boolean output = true;
-		Shape testPuzzle = getFullPuzzle();
+		boolean output = false;
+		Shape testPuzzle = new Shape(puzzle);
 		try {
+			for (Shape shape : shapes) {
+				if (shape.getX() != -1 && shape.getY() != -1 && !(shape == s)) {
+					try {
+						addShape(testPuzzle, shape);
+					} catch (Exception e) {}
+				}
+			}
 			Shape child = new Shape(s);
 			child.setX(x);
 			child.setY(y);
 			addShape(testPuzzle, child);
-		} catch (Exception e) {
-			output = false;
-		}
+			output = true;
+		} catch (Exception e){}
 		return output;
 	}
 	
