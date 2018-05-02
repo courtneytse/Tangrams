@@ -42,27 +42,17 @@ public class GridSquare {
 	}
 	
 	public void merge(GridSquare sq) throws Exception {
-		if (sq.getAllFull()) {
-			if (!(topRight || botRight || topLeft || botLeft || allFull)) {
-				allFull = true;
-			} else {
-				System.out.println("tried to merge full square into non-empty square");
-				throw new Exception();
-			}
-		}
-		else if (this.getAllFull()) {
-			if (!(sq.getTopLeft() || sq.getTopRight() || sq.getBotLeft() || sq.getBotRight() || sq.getAllFull())) {
-				allFull = true;
-			} else {
-				System.out.println(sq.getAllFull());
-				System.out.println("tried to merge non-empty square into full square");
-				throw new Exception();
-			}
-		}
 		setTopRight(sq.getTopRight());
 		setTopLeft(sq.getTopLeft());
 		setBotLeft(sq.getBotLeft());
 		setBotRight(sq.getBotRight());
+		if (sq.getAllFull()) {
+			if (!(this.getBotLeft() || this.getBotRight() || this.getTopLeft() || this.getTopRight()) || this.getAllFull()) {
+				allFull =  true;
+			} else {
+				throw new Exception();
+			}
+		}
 	}
 	
 	public void setBotRight(boolean input) throws Exception {

@@ -21,7 +21,7 @@ public class Shape {
 				gridComposition[x][y] = new GridSquare(false);
 				try {
 					gridComposition[x][y].merge(copy.getGridComposition()[x][y]);
-				} catch (Exception e) {};
+				} catch (Exception e) {System.out.println("illegal merge");};
 			}
 		}
 		x = copy.getX();

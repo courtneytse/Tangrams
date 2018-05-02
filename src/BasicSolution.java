@@ -31,8 +31,6 @@ public class BasicSolution implements Solution {
 							if (solveTangram(test).getFullPuzzle().getArea() > output.getFullPuzzle().getArea()) {
 								output = test;
 							}
-						} else {
-							System.out.println("could not place " + s + " at x=" + x + ", y=" + y);
 						}
 					}
 				}
