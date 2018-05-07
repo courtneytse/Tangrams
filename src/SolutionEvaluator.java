@@ -9,7 +9,11 @@ public class SolutionEvaluator {
 	public double evaluateSolution(Solution soln, ArrayList<Tangrams> tangrams) {
 		double numSolved = 0;
 		for (Tangrams t : tangrams) {
-			if (checkSoln(soln.solveTangram(t))) {
+			boolean solved = false;
+			for (Tangrams tan : soln.solveTangram(t, 0)) {
+				solved = solved || checkSoln(tan);
+			}
+			if (solved) {
 				numSolved++;
 			}
 		}

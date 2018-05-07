@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class SquareSolution implements Solution{
 
 	@Override
-	public Tangrams solveTangram(Tangrams tangram) {
+	public ArrayList<Tangrams> solveTangram(Tangrams tangram, int cut) {
 		
 		Diamond outline = new Diamond(16);
 		outline.setCoordinate(-8, 8);
@@ -39,7 +39,7 @@ public class SquareSolution implements Solution{
 		shapes.add(p2);
 		
 		test.setShapes(shapes);
-		return test;
+		return (new ArrayList<Tangrams>());
 		
 	}
 

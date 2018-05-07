@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 public class BasicSolution implements Solution {
 
 	TestBedGui gui;
@@ -8,11 +8,10 @@ public class BasicSolution implements Solution {
 	BasicSolution() {
 		layer = 0;
 	}
-	Scanner pause;
-	public Tangrams solveTangram(Tangrams tangram) {
-		pause = new Scanner(System.in);
+	
+	public ArrayList<Tangrams> solveTangram(Tangrams tangram, int cut) {
 		layer++;
-		Tangrams output = tangram;
+		ArrayList<Tangrams> output = new ArrayList<Tangrams>();
 		if (layer == 1) {
 			gui = new TestBedGui(tangram);
 			shapeGui = new ShapeTrayGui(tangram);
@@ -28,14 +27,22 @@ public class BasicSolution implements Solution {
 						if (tangram.legalToPlace(x, y, s)) {
 							Tangrams test = new Tangrams(tangram);
 							test.moveShape(shapeNum, x, y);
-							if (solveTangram(test).getFullPuzzle().getArea() > output.getFullPuzzle().getArea()) {
-								output = test;
+							for (Tangrams t : solveTangram(test, cut)) {
+								cut = Math.max(t.getFullPuzzle().getArea(), cut);
+								if (t.getFullPuzzle().getArea() >= cut) {
+									output.add(t);
+								}
 							}
 						}
 					}
 				}
 			}
 			shapeNum++;
+		}
+		for (Tangrams t : output) {
+			if (t.getFullPuzzle().getArea() < cut) {
+				output.remove(t);
+			}
 		}
 		return output;
 	}
@@ -60,6 +67,6 @@ public class BasicSolution implements Solution {
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_RIGHT, 2));
 		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
-		System.out.println(new BasicSolution().solveTangram(test));
+		new BasicSolution().solveTangram(test, 0);
 	}
 }
