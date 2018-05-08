@@ -8,6 +8,11 @@ public class Shape {
 		width = xSize;
 		height = ySize;
 		gridComposition = new GridSquare[width][height];
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				gridComposition[x][y] = new GridSquare(false);
+			}
+		}
 		x = -1;
 		y = -1;
 	}

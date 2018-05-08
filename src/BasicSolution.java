@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 public class BasicSolution implements Solution {
 
 	TestBedGui gui;
@@ -9,6 +10,7 @@ public class BasicSolution implements Solution {
 		layer = 0;
 	}
 	
+	Scanner pause = new Scanner(System.in);
 	public ArrayList<Tangrams> solveTangram(Tangrams tangram, int cut) {
 		layer++;
 		ArrayList<Tangrams> output = new ArrayList<Tangrams>();
@@ -18,26 +20,31 @@ public class BasicSolution implements Solution {
 		} else {
 			gui.update(tangram);
 			shapeGui.update(tangram);
+			pause.nextLine();
 		}
+		Shape next = new Shape(0, 0);
+		int nextIndex = 0;
 		int shapeNum = 0;
 		for (Shape s : tangram.getShapes()) {
-			if (s.getX() == -1 || s.getY() == -1) {
-				for (int y = 0; y <= tangram.getPuzzle().getHeight() - s.getHeight(); y++) {
-					for (int x = 0; x <= tangram.getPuzzle().getWidth() - s.getWidth(); x++) {
-						if (tangram.legalToPlace(x, y, s)) {
-							Tangrams test = new Tangrams(tangram);
-							test.moveShape(shapeNum, x, y);
-							for (Tangrams t : solveTangram(test, cut)) {
-								cut = Math.max(t.getFullPuzzle().getArea(), cut);
-								if (t.getFullPuzzle().getArea() >= cut) {
-									output.add(t);
-								}
-							}
+			if (s.getX() == -1 && s.getY() == -1 && s.getArea() >= next.getArea()) {
+				next = s;
+				nextIndex = shapeNum;
+			}
+			shapeNum++;
+		}
+		for (int y = 0; y <= tangram.getPuzzle().getHeight() - next.getHeight(); y++) {
+			for (int x = 0; x <= tangram.getPuzzle().getWidth() - next.getWidth(); x++) {
+				if (tangram.legalToPlace(x, y, next)) {
+					Tangrams test = new Tangrams(tangram);
+					test.moveShape(nextIndex, x, y);
+					for (Tangrams t : solveTangram(test, cut)) {
+						cut = Math.max(t.getFullPuzzle().getArea(), cut);
+						if (t.getFullPuzzle().getArea() >= cut) {
+							output.add(t);
 						}
 					}
 				}
 			}
-			shapeNum++;
 		}
 		for (Tangrams t : output) {
 			if (t.getFullPuzzle().getArea() < cut) {

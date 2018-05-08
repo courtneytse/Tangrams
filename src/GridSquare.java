@@ -86,7 +86,7 @@ public class GridSquare {
 	}
 	
 	public void setTopRight(boolean input) throws Exception {
-		if (input && (botRight || topLeft || topRight)) {
+		if (input && (botRight || topLeft || topRight || allFull)) {
 			throw new Exception();
 		} else {
 			topRight = input;
@@ -97,7 +97,7 @@ public class GridSquare {
 	}
 	
 	public void setTopLeft(boolean input) throws Exception {
-		if (input && (topLeft || botLeft || topRight)) {
+		if (input && (topLeft || botLeft || topRight || allFull)) {
 			throw new Exception();
 		} else {
 			topLeft = input;

@@ -11,6 +11,7 @@ public class TestBedGui extends JPanel{
 		frame.setSize(new Dimension(state.getPuzzle().getWidth() * 50 + 25, state.getPuzzle().getHeight() * 50 + 50));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(this);
+		frame.setAlwaysOnTop(true);
 		frame.setVisible(true);
 		check = new JFrame("Is Valid?");
 		check.setContentPane(new JPanel());

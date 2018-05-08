@@ -13,6 +13,7 @@ public class ShapeTrayGui extends JPanel {
 		frame.setSize(this.getSize());
 		frame.setLocation(state.getPuzzle().getWidth()*50, 0);
 		frame.setContentPane(this);
+		frame.setAlwaysOnTop(true);
 		frame.setVisible(true);
 	}
 

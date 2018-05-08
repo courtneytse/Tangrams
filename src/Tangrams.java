@@ -83,6 +83,15 @@ public class Tangrams {
 		}
 	}
 	
+	public void moveShape(Shape s, int newX, int newY) {
+		if (legalToPlace(newX, newY, s)) {
+			s.setX(newX);
+			s.setY(newY);
+		} else {
+			System.out.println("Illegal placement");
+		}
+	}
+	
 	public static void showExample1() {
 		Shape testShape = new Shape(2, 2);
 		GridSquare[][] newArray = new GridSquare[2][2];
