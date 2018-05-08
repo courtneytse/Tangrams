@@ -42,10 +42,18 @@ public class GridSquare {
 	}
 	
 	public void merge(GridSquare sq) throws Exception {
-		setTopRight(sq.getTopRight());
-		setTopLeft(sq.getTopLeft());
-		setBotLeft(sq.getBotLeft());
-		setBotRight(sq.getBotRight());
+		if (sq.getTopRight()) {
+			setTopRight(sq.getTopRight());
+		}
+		if (sq.getTopLeft()) {
+			setTopLeft(sq.getTopLeft());
+		}
+		if (sq.getBotLeft()) {
+			setBotLeft(sq.getBotLeft());
+		}
+		if (sq.getBotRight()) {
+			setBotRight(sq.getBotRight());
+		}
 		if (sq.getAllFull() && (!(sq.getTopLeft() || sq.getTopRight() || sq.getBotLeft() || sq.getBotRight()))) {
 			if (!(this.getBotLeft() || this.getBotRight() || this.getTopLeft() || this.getTopRight() || this.getAllFull())) {
 				allFull =  true;

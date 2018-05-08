@@ -43,7 +43,7 @@ public class Tangrams {
 		Shape testPuzzle = new Shape(puzzle);
 		try {
 			for (Shape shape : shapes) {
-				if ((shape.getX() != -1 || shape.getY() != -1) && !(shape == s)) {
+				if (!(shape.getX() == -1 || shape.getY() == -1) && !(shape == s)) {
 					try {
 						addShape(testPuzzle, shape);
 					} catch (Exception e) {}
