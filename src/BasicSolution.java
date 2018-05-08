@@ -23,7 +23,7 @@ public class BasicSolution implements Solution {
 			pause.nextLine();
 		}
 		Shape next = new Shape(0, 0);
-		int nextIndex = 0;
+		int nextIndex = -1;
 		int shapeNum = 0;
 		for (Shape s : tangram.getShapes()) {
 			if (s.getX() == -1 && s.getY() == -1 && s.getArea() >= next.getArea()) {
@@ -32,15 +32,17 @@ public class BasicSolution implements Solution {
 			}
 			shapeNum++;
 		}
-		for (int y = 0; y <= tangram.getPuzzle().getHeight() - next.getHeight(); y++) {
-			for (int x = 0; x <= tangram.getPuzzle().getWidth() - next.getWidth(); x++) {
-				if (tangram.legalToPlace(x, y, next)) {
-					Tangrams test = new Tangrams(tangram);
-					test.moveShape(nextIndex, x, y);
-					for (Tangrams t : solveTangram(test, cut)) {
-						cut = Math.max(t.getFullPuzzle().getArea(), cut);
-						if (t.getFullPuzzle().getArea() >= cut) {
-							output.add(t);
+		if (nextIndex != -1) {
+			for (int y = 0; y <= tangram.getPuzzle().getHeight() - next.getHeight(); y++) {
+				for (int x = 0; x <= tangram.getPuzzle().getWidth() - next.getWidth(); x++) {
+					if (tangram.legalToPlace(x, y, next)) {
+						Tangrams test = new Tangrams(tangram);
+						test.moveShape(nextIndex, x, y);
+						for (Tangrams t : solveTangram(test, cut)) {
+							cut = Math.max(t.getFullPuzzle().getArea(), cut);
+							if (t.getFullPuzzle().getArea() >= cut) {
+								output.add(t);
+							}
 						}
 					}
 				}
