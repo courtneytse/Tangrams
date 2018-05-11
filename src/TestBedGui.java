@@ -4,8 +4,10 @@ public class TestBedGui extends JPanel{
 
 	Tangrams disp;
 	JFrame frame, check;
+	Color[] colors;
 	
 	TestBedGui(Tangrams state) {
+		colors = new Color[] {Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.PINK, Color.CYAN, Color.GREEN, Color.ORANGE, Color.MAGENTA};
 		disp = state;
 		frame = new JFrame("Tangrams");
 		frame.setSize(new Dimension(state.getPuzzle().getWidth() * 50 + 25, state.getPuzzle().getHeight() * 50 + 50));
@@ -31,6 +33,7 @@ public class TestBedGui extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g) {
+		int colornum = -1;
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.BLACK);
@@ -58,10 +61,14 @@ public class TestBedGui extends JPanel{
 			}
 		}
 		for (Shape s : disp.getShapes()) {
+			colornum++;
+			if (colornum == colors.length) {
+				colornum = 0;
+			}
 			if (s.getX() != -1 && s.getY() != -1) {
 				for (int y = 0; y < s.getHeight(); y++) {
 					for (int x = 0; x < s.getWidth(); x++) {
-						g.setColor(Color.RED);
+						g.setColor(colors[colornum]);
 						if (s.getGridComposition()[x][y].getAllFull()) {
 							g.fillRect((x + s.getX())*50, (y + s.getY())*50, 50, 50);
 							g.setColor(Color.BLACK);

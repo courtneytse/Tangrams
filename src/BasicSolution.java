@@ -41,7 +41,6 @@ public class BasicSolution implements Solution {
 						for (Tangrams t : solveTangram(test, cut)) {
 							if (t.getFullPuzzle().getArea() >= cut) {
 								output.add(t);
-								System.out.println("Added");
 								cut = t.getFullPuzzle().getArea();
 							}
 						}
@@ -53,10 +52,7 @@ public class BasicSolution implements Solution {
 			return output;
 		}
 		for (Tangrams t : output) {
-			System.out.println("t: " + t.getFullPuzzle().getArea());
-			System.out.println("cut: " + cut);
 			if (t.getFullPuzzle().getArea() < cut) {
-				System.out.println("removed");
 				output.remove(t);
 			}
 		}
@@ -86,8 +82,8 @@ public class BasicSolution implements Solution {
 		ArrayList<Tangrams> solved = new BasicSolution().solveTangram(test, 72);
 		System.out.println("done");
 		for (Tangrams t : solved) {
-			System.out.println("t: " + t.getFullPuzzle().getArea());
 			System.out.println(SolutionEvaluator.checkSoln(t));
+			new TestBedGui(t);
 		}
 	}
 }
