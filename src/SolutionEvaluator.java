@@ -24,7 +24,7 @@ public class SolutionEvaluator {
 		boolean match = true;
 		for(int i = 0; i < soln.getPuzzle().getHeight(); i++) {
 			for (int j = 0; j < soln.getPuzzle().getWidth(); j++) {
-				match = match && soln.getPuzzle().getGridComposition()[j][i].getAllFull();
+				match = match && soln.getFullPuzzle().getGridComposition()[j][i].getAllFull();
 			}
 		}
 		return match;

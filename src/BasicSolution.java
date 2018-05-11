@@ -20,7 +20,7 @@ public class BasicSolution implements Solution {
 		} else {
 			gui.update(tangram);
 			shapeGui.update(tangram);
-			pause.nextLine();
+//			pause.nextLine();
 		}
 		Shape next = new Shape(0, 0);
 		int nextIndex = -1;
@@ -39,17 +39,24 @@ public class BasicSolution implements Solution {
 						Tangrams test = new Tangrams(tangram);
 						test.moveShape(nextIndex, x, y);
 						for (Tangrams t : solveTangram(test, cut)) {
-							cut = Math.max(t.getFullPuzzle().getArea(), cut);
 							if (t.getFullPuzzle().getArea() >= cut) {
 								output.add(t);
+								System.out.println("Added");
+								cut = t.getFullPuzzle().getArea();
 							}
 						}
 					}
 				}
 			}
+		} else {
+			output.add(tangram);
+			return output;
 		}
 		for (Tangrams t : output) {
+			System.out.println("t: " + t.getFullPuzzle().getArea());
+			System.out.println("cut: " + cut);
 			if (t.getFullPuzzle().getArea() < cut) {
+				System.out.println("removed");
 				output.remove(t);
 			}
 		}
@@ -76,6 +83,11 @@ public class BasicSolution implements Solution {
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_RIGHT, 2));
 		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
 		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
-		new BasicSolution().solveTangram(test, 0);
+		ArrayList<Tangrams> solved = new BasicSolution().solveTangram(test, 72);
+		System.out.println("done");
+		for (Tangrams t : solved) {
+			System.out.println("t: " + t.getFullPuzzle().getArea());
+			System.out.println(SolutionEvaluator.checkSoln(t));
+		}
 	}
 }
