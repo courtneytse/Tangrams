@@ -4,6 +4,11 @@ public class Shape {
 	private GridSquare[][] gridComposition;
 	private int width, height, x, y;
 	
+	Shape() {
+		width = 0;
+		height = 0;
+		
+	}
 	Shape(int xSize, int ySize) {
 		width = xSize;
 		height = ySize;

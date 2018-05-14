@@ -40,7 +40,8 @@ public class SolutionEvaluator {
 		ArrayList<String> puzContent = new ArrayList<String>();
 		Shape puzzle;
 		GridSquare[][] shapeGrid;
-		ArrayList<String> shapeContent = new ArrayList<String>();
+		ArrayList<Shape> shapes = new ArrayList<Shape>();
+		Tangrams toAdd = new Tangrams(new Shape());
 		try {
 			reader = new FileReader(pathname);
 			bufRead = new BufferedReader(reader);
@@ -72,7 +73,39 @@ public class SolutionEvaluator {
 					}
 					puzzle = new Shape((puzContent.get(0).length()), puzContent.size());
 					puzzle.setGridComposition(shapeGrid);
-					new TestBedGui(new Tangrams(puzzle));
+					toAdd = new Tangrams(puzzle);
+				}
+				if (line.equals("!")){
+					shapes.clear();
+					while (!(line = bufRead.readLine()).equals("!")) {
+						if (line.substring(0, line.indexOf("(")).equals("RT")) {
+							line = line.substring(line.indexOf(")") + 1);
+							int dirNum = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							line = line.substring(line.indexOf("(") + 1);
+							int len = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							shapes.add(new RightTriangle(dirNum, len));
+						} else if (line.substring(0, line.indexOf("(")).equals("D")) {
+							line = line.substring(line.indexOf(")") + 1);
+							int len = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							shapes.add(new Diamond(len));
+						} else if (line.substring(0, line.indexOf("(")).equals("HD")) {
+							line = line.substring(line.indexOf(")") + 1);
+							int dirNum = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							line = line.substring(line.indexOf("(") + 1);
+							int len = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							shapes.add(new HalfDiamond(dirNum, len));
+						} else if (line.substring(0, line.indexOf("(")).equals("R")) {
+							line = line.substring(line.indexOf(")") + 1);
+							int width = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							line = line.substring(line.indexOf("(") + 1);
+							int height = Integer.parseInt(line.substring(0, line.indexOf(")")));
+							shapes.add(new Rectangle(width, height));
+						}
+						
+					}
+					for (Shape s : shapes) {
+						toAdd.getShapes().add(s);
+					}
 				}
 			}
 		} catch(IOException e) {
@@ -85,6 +118,8 @@ public class SolutionEvaluator {
 	
 	public static void main(String args[]) {
 		new SolutionEvaluator().getTangramsFromFile("tan");
+		System.out.println("RT(1)(2)".substring(0, "RT(1)(2)".indexOf("(")));
+		System.out.println("RT(1)(2)".substring("RT(1)(2)".indexOf("(")));
 	}
 	
 }
