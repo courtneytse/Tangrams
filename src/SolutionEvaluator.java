@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SolutionEvaluator {
 	
@@ -117,7 +114,11 @@ public class SolutionEvaluator {
 	
 	public static void main(String args[]) {
 		SolutionEvaluator tester = new SolutionEvaluator();
+		long timeI = System.currentTimeMillis();
 		System.out.println(tester.evaluateSolution(new BasicSolution(), SolutionEvaluator.getTangramsFromFile("tan")));
+		long timeF = System.currentTimeMillis();
+		System.out.println("time: "+(timeF-timeI));
+		
 	}
 	
 }
