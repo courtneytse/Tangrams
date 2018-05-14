@@ -118,7 +118,6 @@ public class SolutionEvaluator {
 	public static void main(String args[]) {
 		SolutionEvaluator tester = new SolutionEvaluator();
 		System.out.println(tester.evaluateSolution(new BasicSolution(), SolutionEvaluator.getTangramsFromFile("tan")));
-		
 	}
 	
 }
