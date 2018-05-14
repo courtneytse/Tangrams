@@ -7,7 +7,7 @@ public class TestBedGui extends JPanel{
 	Color[] colors;
 	
 	TestBedGui(Tangrams state) {
-		colors = new Color[] {Color.RED, Color.BLUE, Color.WHITE, Color.YELLOW, Color.PINK, Color.CYAN, Color.GREEN, Color.ORANGE, Color.MAGENTA};
+		colors = new Color[] {Color.RED, Color.BLUE, Color.YELLOW, Color.PINK, Color.CYAN, Color.GREEN, Color.ORANGE, Color.MAGENTA};
 		disp = state;
 		frame = new JFrame("Tangrams");
 		frame.setSize(new Dimension(state.getPuzzle().getWidth() * 50 + 25, state.getPuzzle().getHeight() * 50 + 50));

@@ -7,7 +7,9 @@ public class Shape {
 	Shape() {
 		width = 0;
 		height = 0;
-		
+		x = -1;
+		y = -1;
+		gridComposition = new GridSquare[0][0];
 	}
 	Shape(int xSize, int ySize) {
 		width = xSize;

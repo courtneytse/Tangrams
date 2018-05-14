@@ -4,8 +4,10 @@ public class ShapeTrayGui extends JPanel {
 
 	JFrame frame;
 	Tangrams disp;
-
+	Color[] colors;
+	
 	ShapeTrayGui(Tangrams state) {
+		colors = new Color[] {Color.RED, Color.BLUE, Color.YELLOW, Color.PINK, Color.CYAN, Color.GREEN, Color.ORANGE, Color.MAGENTA};
 		disp = state;
 		frame = new JFrame("Shapes");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +28,12 @@ public class ShapeTrayGui extends JPanel {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		int originX = 0, originY = 0, nextY = 0;
+		int colornum = -1;
 		for (Shape s : disp.getShapes()) {
+			colornum++;
+			if (colornum == colors.length) {
+				colornum = 0;
+			}
 			if (s.getX() == -1 && s.getY() == -1) {
 				if ((s.getWidth() + originX)*50 >= 800) {
 					originY = nextY;
@@ -34,7 +41,7 @@ public class ShapeTrayGui extends JPanel {
 				}
 				for (int y = 0; y < s.getHeight(); y++) {
 					for (int x = 0; x < s.getWidth(); x++) {
-						g.setColor(Color.RED);
+						g.setColor(colors[colornum]);
 						if (s.getGridComposition()[x][y].getAllFull()) {
 							g.fillRect((x + originX)*50, (y + originY)*50, 50, 50);
 							g.setColor(Color.BLACK);

@@ -20,7 +20,7 @@ public class BasicSolution implements Solution {
 		} else {
 			gui.update(tangram);
 			shapeGui.update(tangram);
-//			pause.nextLine();
+			pause.nextLine();
 		}
 		Shape next = new Shape(0, 0);
 		int nextIndex = -1;
@@ -60,30 +60,14 @@ public class BasicSolution implements Solution {
 	}
 	
 	public static void main(String[] args) {
-		Shape testShape = new Shape(6, 6);
-		GridSquare[][] newArray = new GridSquare[6][6];
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
-				newArray[i][j] = new GridSquare(false);
+		ArrayList<Tangrams> grams = SolutionEvaluator.getTangramsFromFile("tan");
+		for (Tangrams t : grams) {
+			ArrayList<Tangrams> solved = new BasicSolution().solveTangram(t, 0);
+			System.out.println("done");
+			for (Tangrams s : solved) {
+				System.out.println(SolutionEvaluator.checkSoln(s));
+				new TestBedGui(s);
 			}
-		}
-		testShape.setGridComposition(newArray);
-		Tangrams test = new Tangrams(testShape);
-		test.getShapes().add(new Diamond(4));
-		test.getShapes().add(new RightTriangle(RightTriangle.TOP_LEFT, 2));
-		test.getShapes().add(new Rectangle(2, 6));
-		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
-		test.getShapes().add(new RightTriangle(RightTriangle.TOP_RIGHT, 2));
-		test.getShapes().add(new HalfDiamond(HalfDiamond.RIGHT, 4));
-		test.getShapes().add(new Diamond(2));
-		test.getShapes().add(new RightTriangle(RightTriangle.BOT_RIGHT, 2));
-		test.getShapes().add(new HalfDiamond(HalfDiamond.LEFT, 2));
-		test.getShapes().add(new RightTriangle(RightTriangle.BOT_LEFT, 2));
-		ArrayList<Tangrams> solved = new BasicSolution().solveTangram(test, 72);
-		System.out.println("done");
-		for (Tangrams t : solved) {
-			System.out.println(SolutionEvaluator.checkSoln(t));
-			new TestBedGui(t);
 		}
 	}
 }
