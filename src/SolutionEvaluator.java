@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,19 +34,57 @@ public class SolutionEvaluator {
 	
 	public static ArrayList<Tangrams> getTangramsFromFile(String pathname) {
 		ArrayList<Tangrams> tangramsFromFile = new ArrayList<>();
-		List<String> content = new ArrayList<>();
+		FileReader reader;
+		BufferedReader bufRead;
+		String line;
+		ArrayList<String> puzContent = new ArrayList<String>();
+		Shape puzzle;
+		GridSquare[][] shapeGrid;
+		ArrayList<String> shapeContent = new ArrayList<String>();
 		try {
-			content = Files.readAllLines(Paths.get(pathname));
+			reader = new FileReader(pathname);
+			bufRead = new BufferedReader(reader);
+			while ((line = bufRead.readLine()) != null) {
+				if (line.equals("~")) {
+					puzContent.clear();
+					while (!(line = bufRead.readLine()).equals("~")) {
+						puzContent.add(line);
+					}
+					int lineNum = 0;
+					shapeGrid = new GridSquare[puzContent.get(0).length()][puzContent.size()];
+					for (String s : puzContent) {
+						for (int i = 0; i < s.length(); i++) {
+							if (s.substring(i, i+1).equals("X")) {
+								shapeGrid[i][lineNum] = new GridSquare(true);
+							} else if (s.substring(i, i+1).equals("0")) {
+								shapeGrid[i][lineNum] = new GridSquare(false);
+							} else if (s.substring(i, i+1).equals("1")) {
+								shapeGrid[i][lineNum] = new GridSquare(false, false, false, true);
+							} else if (s.substring(i, i+1).equals("2")) {
+								shapeGrid[i][lineNum] = new GridSquare(false, false, true, false);
+							} else if (s.substring(i, i+1).equals("3")) {
+								shapeGrid[i][lineNum] = new GridSquare(false, true, false, false);
+							} else if (s.substring(i, i+1).equals("4")) {
+								shapeGrid[i][lineNum] = new GridSquare(true, false, false, false);
+							}
+						}
+						lineNum++;
+					}
+					puzzle = new Shape((puzContent.get(0).length()), puzContent.size());
+					puzzle.setGridComposition(shapeGrid);
+					new TestBedGui(new Tangrams(puzzle));
+				}
+			}
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		//TODO
+		
 
 		return tangramsFromFile;
 	}
 	
 	public static void main(String args[]) {
-		
+		new SolutionEvaluator().getTangramsFromFile("tan");
 	}
 	
 }
