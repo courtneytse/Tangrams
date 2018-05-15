@@ -20,12 +20,13 @@ public class BasicSolution implements Solution {
 		} else {
 			gui.update(tangram);
 			shapeGui.update(tangram);
-			pause.nextLine();
+//			pause.nextLine();
 		}
 		Shape next = new Shape(0, 0);
 		int nextIndex = -1;
 		int shapeNum = 0;
 		for (Shape s : tangram.getShapes()) {
+			System.out.println(s.getArea());
 			if (s.getX() == -1 && s.getY() == -1 && s.getArea() >= next.getArea()) {
 				next = s;
 				nextIndex = shapeNum;
