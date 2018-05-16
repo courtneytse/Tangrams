@@ -20,7 +20,7 @@ public class BasicSolution implements Solution {
 		} else {
 			gui.update(tangram);
 			shapeGui.update(tangram);
-//			pause.nextLine();
+			pause.nextLine();
 		}
 		Shape next = new Shape(0, 0);
 		int nextIndex = -1;
