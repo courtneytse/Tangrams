@@ -16,7 +16,7 @@ public class SolutionEvaluator {
 				numSolved++;
 			}
 		}
-		return numSolved/tangrams.size();
+		return (numSolved/tangrams.size())*100;
 	}
 	
 	public static boolean checkSoln(Tangrams soln) {
@@ -114,7 +114,7 @@ public class SolutionEvaluator {
 	
 	public static void main(String args[]) {
 		SolutionEvaluator tester = new SolutionEvaluator();
-		System.out.println(tester.evaluateSolution(new BasicSolution(), SolutionEvaluator.getTangramsFromFile("tan")));
+		System.out.println("Percent solved: "+tester.evaluateSolution(new BasicSolution(), SolutionEvaluator.getTangramsFromFile("tan")));
 		
 	}
 	
