@@ -114,10 +114,7 @@ public class SolutionEvaluator {
 	
 	public static void main(String args[]) {
 		SolutionEvaluator tester = new SolutionEvaluator();
-		long timeI = System.currentTimeMillis();
 		System.out.println(tester.evaluateSolution(new BasicSolution(), SolutionEvaluator.getTangramsFromFile("tan")));
-		long timeF = System.currentTimeMillis();
-		System.out.println("time: "+(timeF-timeI));
 		
 	}
 	
